@@ -6,5 +6,11 @@ export default function fetcher(url: string, data = undefined) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+  }).then((res) => {
+    console.log('In here', res);
+    if (res.status > 299 && res.status < 200) {
+      throw new Error('Invalid response');
+    }
+    return res.json();
   });
 }

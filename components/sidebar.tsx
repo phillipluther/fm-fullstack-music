@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/layout';
 import { MdHome, MdSearch, MdLibraryMusic, MdPlaylistAdd, MdFavorite } from 'react-icons/md';
 import { audioPlayerHeight } from './audio-player';
+import { usePlaylist } from '../lib/hooks';
 
 export const sidebarWidth = '240px';
 export const sidebarMenuItems = [
@@ -45,9 +46,8 @@ export const sidebarMusicMenu = [
   },
 ];
 
-const playlist = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`);
-
 const Sidebar = () => {
+  const { playlists } = usePlaylist();
   return (
     <Box
       position="absolute"
@@ -105,11 +105,11 @@ const Sidebar = () => {
         {/* Playlists */}
         <Box height="66%" overflowY="auto" paddingY="20px">
           <List spacing={2}>
-            {playlist.map((list) => (
-              <ListItem paddingX="20px" fontSize="16px" key={list}>
+            {playlists.map((list) => (
+              <ListItem paddingX="20px" fontSize="16px" key={list.id}>
                 <LinkBox>
                   <NextLink href="/" passHref>
-                    <LinkOverlay>{list}</LinkOverlay>
+                    <LinkOverlay>{list.name}</LinkOverlay>
                   </NextLink>
                 </LinkBox>
               </ListItem>
