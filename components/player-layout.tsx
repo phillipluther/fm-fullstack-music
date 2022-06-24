@@ -11,7 +11,6 @@ const PlayerLayout = ({ children }) => {
         marginBottom={audioPlayerHeight}
         width={`calc(100vw - ${sidebarWidth})`}
         height={`calc(100vh - ${audioPlayerHeight})`}
-        background="yellow"
       >
         {children}
       </Box>
