@@ -29,3 +29,8 @@ export const validateRoute = (handler) => {
     res.status(401).json({ error: 'Unauthorized' });
   };
 };
+
+export const validateToken = (token) => {
+  const user = jwt.verify(token, 'secret');
+  return user;
+};
